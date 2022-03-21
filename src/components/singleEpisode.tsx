@@ -1,15 +1,6 @@
-/* HEADER
-the episode's name
-the season number (see below)
-the episode number (see below)
--------------------------------
-IMAGE OF EPISODE
-------------------------------
-episode summary - P TAG
-*/
-
 import IntEpisode from "./episodesTypes";
 import episodeList from "../tvData.json";
+import seasonEpisodeNum from "./seasonEpisodeNum";
 
 const episodesArr: IntEpisode[] = episodeList;
 const mapName = episodesArr.map((value) => (
@@ -17,7 +8,7 @@ const mapName = episodesArr.map((value) => (
     {" "}
     <h2>
       {" "}
-      {value.name} {value.season} {value.number}
+      {value.name} {seasonEpisodeNum(value.season)} {value.number}
     </h2>
     <img src={value.image.medium} alt="screenshot from episode" />
     {value.summary.replace(/<\/?p>/g, " ")}
