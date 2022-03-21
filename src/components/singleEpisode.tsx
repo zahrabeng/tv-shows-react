@@ -14,7 +14,9 @@ import episodeList from "../tvData.json"
 
 const episodesArr:IntEpisode[] = episodeList
 const mapName = episodesArr.map((value) => 
-<li key={value.id}> {value.name} {value.season} {value.number}</li>
+<div key={value.id}> <h2> {value.name} {value.season} {value.number}</h2>
+<img src={value.image.medium} alt="screenshot from episode"/>
+</div>
 )
 
 export default function SingleEpisode():JSX.Element{
