@@ -19,6 +19,7 @@ export default function SingleEpisode(): JSX.Element {
   return (
     <>
       <div>{mapName}</div>
+      <p>Data taken from <a href="https://www.tvmaze.com/">TV Maze</a></p>  
     </>
   );
 }
