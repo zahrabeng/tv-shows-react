@@ -3,14 +3,9 @@ import SingleEpisode from "./components/singleEpisode";
 function App(): JSX.Element {
   return (
     <>
-      <SingleEpisode/>
+      <SingleEpisode />
     </>
   );
-
 }
-
-
-
-
 
 export default App;
