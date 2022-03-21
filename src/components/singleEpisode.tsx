@@ -8,7 +8,7 @@ const mapName = episodesArr.map((value) => (
     {" "}
     <h2>
       {" "}
-      {value.name} {seasonEpisodeNum(value.season)} {value.number}
+      {value.name} {seasonEpisodeNum(value.season, value.number)}
     </h2>
     <img src={value.image.medium} alt="screenshot from episode" />
     {value.summary.replace(/<\/?p>/g, " ")}
