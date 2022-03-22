@@ -1,6 +1,7 @@
 import IntEpisode from "./episodesTypes";
 import episodeList from "../tvData.json";
 import seasonEpisodeNum from "./seasonEpisodeNum";
+import SearchBar from "./SearchBar";
 
 const episodesArr: IntEpisode[] = episodeList;
 const mapName = episodesArr.map((value) => (
@@ -18,6 +19,7 @@ const mapName = episodesArr.map((value) => (
 export default function SingleEpisode(): JSX.Element {
   return (
     <>
+      <SearchBar/>
       <div>{mapName}</div>
       <p>Data taken from <a href="https://www.tvmaze.com/">TV Maze</a></p>  
     </>
