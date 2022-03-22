@@ -2,9 +2,18 @@ import IntEpisode from "./episodesTypes";
 import episodeList from "../tvData.json";
 import seasonEpisodeNum from "./seasonEpisodeNum";
 import SearchBar from "./SearchBar";
+import { useState } from "react"
 
-const episodesArr: IntEpisode[] = episodeList;
-const mapName = episodesArr.map((value) => (
+
+
+export default function SingleEpisode(): JSX.Element {
+  const [searchText, setSearchText] = useState<string>("")
+const allEpisodes:IntEpisode[] = [...episodeList]
+const filterEpisodes = allEpisodes.filter((oneEpisode: IntEpisode) => { 
+  return (oneEpisode.name.includes(searchText))});
+
+    
+const mapName = filterEpisodes.map((value) => (
   <div key={value.id}>
     {" "}
     <h2>
@@ -15,11 +24,11 @@ const mapName = episodesArr.map((value) => (
     {value.summary.replace(/<\/?p>/g, " ")}
   </div>
 ));
+  
 
-export default function SingleEpisode(): JSX.Element {
   return (
     <>
-      <SearchBar/>
+      <SearchBar searchText={searchText} setSearchText={setSearchText}/>
       <div>{mapName}</div>
       <p>Data taken from <a href="https://www.tvmaze.com/">TV Maze</a></p>  
     </>
