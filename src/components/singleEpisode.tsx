@@ -15,6 +15,8 @@ const filterEpisodes = allEpisodes.filter((oneEpisode: IntEpisode) => {
   (oneEpisode.summary.toLowerCase().includes(searchText.toLowerCase())
   ))});
     
+  const displayEpisodes = `Displaying ${filterEpisodes.length}/${allEpisodes.length} episodes.`
+
 const mapName = filterEpisodes.map((value) => (
   <div key={value.id}>
     {" "}
@@ -40,6 +42,7 @@ const handleSearch = (e:any) =>{
         onChange={handleSearch}
         value={searchText}
       />
+      {displayEpisodes}
       <div>{mapName}</div>
       <p>Data taken from <a href="https://www.tvmaze.com/">TV Maze</a></p>  
     </>
