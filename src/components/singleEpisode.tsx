@@ -1,17 +1,19 @@
 import IntEpisode from "./episodesTypes";
 import episodeList from "../tvData.json";
 import seasonEpisodeNum from "./seasonEpisodeNum";
-import SearchBar from "./SearchBar";
 import { useState } from "react"
 
 
 
 export default function SingleEpisode(): JSX.Element {
-  const [searchText, setSearchText] = useState<string>("")
-const allEpisodes:IntEpisode[] = [...episodeList]
-const filterEpisodes = allEpisodes.filter((oneEpisode: IntEpisode) => { 
-  return (oneEpisode.name.includes(searchText))});
+const [searchText, setSearchText] = useState<string>("")
 
+const allEpisodes:IntEpisode[] = [...episodeList]
+
+const filterEpisodes = allEpisodes.filter((oneEpisode: IntEpisode) => { 
+  return (oneEpisode.name.toLowerCase().includes(searchText.toLowerCase())||
+  (oneEpisode.summary.toLowerCase().includes(searchText.toLowerCase())
+  ))});
     
 const mapName = filterEpisodes.map((value) => (
   <div key={value.id}>
@@ -25,10 +27,19 @@ const mapName = filterEpisodes.map((value) => (
   </div>
 ));
   
+const handleSearch = (e:any) =>{
+  setSearchText(e.target.value)
+
+ }
+
 
   return (
     <>
-      <SearchBar searchText={searchText} setSearchText={setSearchText}/>
+      <input
+        placeholder="search for episode"
+        onChange={handleSearch}
+        value={searchText}
+      />
       <div>{mapName}</div>
       <p>Data taken from <a href="https://www.tvmaze.com/">TV Maze</a></p>  
     </>
