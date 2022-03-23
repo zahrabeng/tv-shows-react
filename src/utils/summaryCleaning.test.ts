@@ -1,4 +1,4 @@
-import summaryCleaning from "../components/summaryCleaning"
+import summaryCleaning from "../components/summaryCleaning";
 
 test("function should remove any openeing and closing p tags", () => {
   expect(summaryCleaning("<p>hello world</p>")).toBe("hello world");

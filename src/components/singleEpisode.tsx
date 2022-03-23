@@ -3,35 +3,34 @@ import episodeList from "../tvData.json";
 import seasonEpisodeNum from "./seasonEpisodeNum";
 import MatchToSearch from "./matchToSearch";
 import SummaryCleaning from "./summaryCleaning";
-import { useState } from "react"
+import { useState } from "react";
 
 export default function SingleEpisode(): JSX.Element {
-const [searchText, setSearchText] = useState<string>("")
+  const [searchText, setSearchText] = useState<string>("");
 
-const allEpisodes:IntEpisode[] = [...episodeList]
+  const allEpisodes: IntEpisode[] = [...episodeList];
 
-const filterEpisodes = allEpisodes.filter((oneEpisode: IntEpisode) => {
-  return (MatchToSearch(oneEpisode.name && oneEpisode.summary, searchText))})
-    
-  const displayEpisodes = `Displaying ${filterEpisodes.length}/${allEpisodes.length} episodes.`
+  const filterEpisodes = allEpisodes.filter((oneEpisode: IntEpisode) => {
+    return MatchToSearch(oneEpisode.name && oneEpisode.summary, searchText);
+  });
 
-const mapName = filterEpisodes.map((value) => (
-  <div key={value.id}>
-    {" "}
-    <h2>
+  const displayEpisodes = `Displaying ${filterEpisodes.length}/${allEpisodes.length} episodes.`;
+
+  const mapName = filterEpisodes.map((value) => (
+    <div key={value.id}>
       {" "}
-      {value.name} {seasonEpisodeNum(value.season, value.number)}
-    </h2>
-    <img src={value.image.medium} alt="screenshot from episode" />
-    {SummaryCleaning(value.summary)}
-  </div>
-));
-  
-const handleSearch = (e:any) =>{
-  setSearchText(e.target.value)
+      <h2>
+        {" "}
+        {value.name} {seasonEpisodeNum(value.season, value.number)}
+      </h2>
+      <img src={value.image.medium} alt="screenshot from episode" />
+      {SummaryCleaning(value.summary)}
+    </div>
+  ));
 
- }
-
+  const handleSearch = (e: any) => {
+    setSearchText(e.target.value);
+  };
 
   return (
     <>
@@ -42,7 +41,9 @@ const handleSearch = (e:any) =>{
       />
       {displayEpisodes}
       <div>{mapName}</div>
-      <p>Data taken from <a href="https://www.tvmaze.com/">TV Maze</a></p>  
+      <p>
+        Data taken from <a href="https://www.tvmaze.com/">TV Maze</a>
+      </p>
     </>
   );
 }
