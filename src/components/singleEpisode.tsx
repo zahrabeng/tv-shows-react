@@ -11,11 +11,8 @@ export default function SingleEpisode(): JSX.Element {
   const allEpisodes: IntEpisode[] = [...episodeList];
 
   const filterEpisodes = allEpisodes.filter((oneEpisode: IntEpisode) => {
-    if (oneEpisode.name!==null) {
-      return MatchToSearch(oneEpisode.name,searchText) || MatchToSearch(oneEpisode.summary,searchText)
-    }else{
-      return MatchToSearch(oneEpisode.summary, searchText)
-    }
+
+      return (MatchToSearch(oneEpisode.name, searchText) || MatchToSearch(oneEpisode.summary , searchText))
   });
 
   const displayEpisodes = `Displaying ${filterEpisodes.length}/${allEpisodes.length} episodes.`;
