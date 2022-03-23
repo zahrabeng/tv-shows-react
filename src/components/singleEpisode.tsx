@@ -11,7 +11,11 @@ export default function SingleEpisode(): JSX.Element {
   const allEpisodes: IntEpisode[] = [...episodeList];
 
   const filterEpisodes = allEpisodes.filter((oneEpisode: IntEpisode) => {
-    return MatchToSearch(oneEpisode.summary, searchText);
+    if (oneEpisode.name!==null) {
+      return MatchToSearch(oneEpisode.name,searchText) || MatchToSearch(oneEpisode.summary,searchText)
+    }else{
+      return MatchToSearch(oneEpisode.summary, searchText)
+    }
   });
 
   const displayEpisodes = `Displaying ${filterEpisodes.length}/${allEpisodes.length} episodes.`;
@@ -23,7 +27,7 @@ export default function SingleEpisode(): JSX.Element {
         {" "}
         {value.name} {seasonEpisodeNum(value.season, value.number)}
       </h2>
-      {(value.image!== null) && <img src={value.image.medium} alt="screenshot from episode" />}
+      {/* {(value.image!== null) && <img src={value.image.medium} alt="screenshot from episode" />} */}
       {SummaryCleaning(value.summary)}
     </div>
   ));
