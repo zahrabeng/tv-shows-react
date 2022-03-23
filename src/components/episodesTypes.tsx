@@ -1,7 +1,7 @@
 export default interface IntEpisode {
   id: number;
   url: string;
-  name: string;
+  name: string| null;
   season: number;
   number: number;
   type: string;
@@ -9,10 +9,11 @@ export default interface IntEpisode {
   airtime: string;
   airstamp: string;
   runtime: number;
-  image: {
-    medium: string;
-    original: string;
-  };
+  rating:{average?:number| null}
+  image:  {
+    medium: string |null;
+    original: string| null;
+  } |null;
   summary: string;
   _links: { self: { href: string } };
 }

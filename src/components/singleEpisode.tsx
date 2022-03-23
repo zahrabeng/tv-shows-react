@@ -1,5 +1,5 @@
 import IntEpisode from "./episodesTypes";
-import episodeList from "../tvData.json";
+import episodeList from "../simpsonsData.json";
 import seasonEpisodeNum from "./seasonEpisodeNum";
 import MatchToSearch from "./matchToSearch";
 import SummaryCleaning from "./summaryCleaning";
@@ -11,7 +11,7 @@ export default function SingleEpisode(): JSX.Element {
   const allEpisodes: IntEpisode[] = [...episodeList];
 
   const filterEpisodes = allEpisodes.filter((oneEpisode: IntEpisode) => {
-    return MatchToSearch(oneEpisode.name && oneEpisode.summary, searchText);
+    return MatchToSearch(oneEpisode.summary, searchText);
   });
 
   const displayEpisodes = `Displaying ${filterEpisodes.length}/${allEpisodes.length} episodes.`;
@@ -23,7 +23,7 @@ export default function SingleEpisode(): JSX.Element {
         {" "}
         {value.name} {seasonEpisodeNum(value.season, value.number)}
       </h2>
-      <img src={value.image.medium} alt="screenshot from episode" />
+      {(value.image!== null) && <img src={value.image.medium} alt="screenshot from episode" />}
       {SummaryCleaning(value.summary)}
     </div>
   ));
