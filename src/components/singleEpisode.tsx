@@ -27,7 +27,7 @@ export default function SingleEpisode(): JSX.Element {
         {" "}
         {value.name} {seasonEpisodeNum(value.season, value.number)}
       </h2>
-      {(value.image) && <img src={value.image.medium} alt="screenshot from episode" />}
+      {(value.image) && <img src={value.image.medium} alt="screenshot from episode"/>}
       {SummaryCleaning(value.summary)}
     </div>
   ));
