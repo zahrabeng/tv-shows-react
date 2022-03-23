@@ -1,6 +1,7 @@
 import IntEpisode from "./episodesTypes";
 import episodeList from "../tvData.json";
 import seasonEpisodeNum from "./seasonEpisodeNum";
+import MatchToSearch from "./matchToSearch";
 import { useState } from "react"
 
 export default function SingleEpisode(): JSX.Element {
@@ -8,9 +9,8 @@ const [searchText, setSearchText] = useState<string>("")
 
 const allEpisodes:IntEpisode[] = [...episodeList]
 
-const filterEpisodes = allEpisodes.filter((oneEpisode: IntEpisode) => { 
-  return (oneEpisode.name.toLowerCase().includes(searchText.toLowerCase())||
-  (oneEpisode.summary.toLowerCase().includes(searchText.toLowerCase())))});
+const filterEpisodes = allEpisodes.filter((oneEpisode: IntEpisode) => {
+  return (MatchToSearch(oneEpisode.name && oneEpisode.summary, searchText))})
     
   const displayEpisodes = `Displaying ${filterEpisodes.length}/${allEpisodes.length} episodes.`
 
