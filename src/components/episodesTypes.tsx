@@ -11,8 +11,8 @@ export default interface IntEpisode {
   runtime: number;
   rating:{average?:number| null}
   image:  {
-    medium: string |null;
-    original: string| null;
+    medium: string;
+    original: string;
   } |null;
   summary: string;
   _links: { self: { href: string } };
