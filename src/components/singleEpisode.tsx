@@ -2,6 +2,7 @@ import IntEpisode from "./episodesTypes";
 import episodeList from "../tvData.json";
 import seasonEpisodeNum from "./seasonEpisodeNum";
 import MatchToSearch from "./matchToSearch";
+import SummaryCleaning from "./summaryCleaning";
 import { useState } from "react"
 
 export default function SingleEpisode(): JSX.Element {
@@ -22,7 +23,7 @@ const mapName = filterEpisodes.map((value) => (
       {value.name} {seasonEpisodeNum(value.season, value.number)}
     </h2>
     <img src={value.image.medium} alt="screenshot from episode" />
-    {value.summary.replace(/<\/?p>/g, " ")}
+    {SummaryCleaning(value.summary)}
   </div>
 ));
   
