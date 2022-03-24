@@ -4,35 +4,40 @@ import seasonEpisodeNum from "./seasonEpisodeNum";
 import MatchToSearch from "./matchToSearch";
 import SummaryCleaning from "./summaryCleaning";
 import { useEffect, useState } from "react";
+import { Z_STREAM_ERROR } from "zlib";
 
 export default function SingleEpisode(): JSX.Element {
   const [searchText, setSearchText] = useState<string>("");
   const [episode, setEpisode] = useState<IntEpisode[]>([]);
   
-
-    // const handleGetEpisodes = async () => {
-    //   const response = await fetch(
-    //     "https://api.tvmaze.com/shows/82/episodes"
-    //   )
-    //   const episodeList:IntEpisode = await response.json()
-    //   return episodeList
-    //   //setEpisode([ episodeList])
-    // }
-
-    const handleGetEpisodes = () =>{
-      fetch("https://api.tvmaze.com/shows/82/episodes")
-      .then((response) => response.json())
-      .then((episodeList:IntEpisode) => setEpisode([ episodeList]))
+  let allEpisodes: IntEpisode[] = []
+    const handleGetEpisodes = async () => {
+      const response = await fetch(
+        "https://api.tvmaze.com/shows/82/episodes "
+      )
+      const episodeList:IntEpisode[] = await response.json()
+      
+      allEpisodes = [...episodeList]
+      
+      //setEpisode([ episodeList])
     }
+    
+    // const handleGetEpisodes = () =>{
+    //   fetch("https://api.tvmaze.com/shows/82/episodes")
+    //   .then((response) => response.json())
+    //   .then((episodeList:IntEpisode) => allEpisodes =  episodeList)
+      
+    // }
       
     useEffect(()=> {
       handleGetEpisodes()
-      console.log(episode)
+      console.log(allEpisodes)
       console.log("render")
+      
     },[])
 
 
-  const allEpisodes: IntEpisode[] = [...episode];
+  // allEpisodes  = [...episode];
 
   const filterEpisodes = allEpisodes.filter((oneEpisode: IntEpisode) => {
 
