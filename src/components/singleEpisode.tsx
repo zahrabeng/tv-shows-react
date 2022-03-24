@@ -1,14 +1,38 @@
 import IntEpisode from "./episodesTypes";
-import episodeList from "../simpsonsData.json";
+//import episodeList from "../simpsonsData.json";
 import seasonEpisodeNum from "./seasonEpisodeNum";
 import MatchToSearch from "./matchToSearch";
 import SummaryCleaning from "./summaryCleaning";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function SingleEpisode(): JSX.Element {
   const [searchText, setSearchText] = useState<string>("");
+  const [episode, setEpisode] = useState<IntEpisode[]>([]);
+  
 
-  const allEpisodes: IntEpisode[] = [...episodeList];
+    // const handleGetEpisodes = async () => {
+    //   const response = await fetch(
+    //     "https://api.tvmaze.com/shows/82/episodes"
+    //   )
+    //   const episodeList:IntEpisode = await response.json()
+    //   return episodeList
+    //   //setEpisode([ episodeList])
+    // }
+
+    const handleGetEpisodes = () =>{
+      fetch("https://api.tvmaze.com/shows/82/episodes")
+      .then((response) => response.json())
+      .then((episodeList:IntEpisode) => setEpisode([ episodeList]))
+    }
+      
+    useEffect(()=> {
+      handleGetEpisodes()
+      console.log(episode)
+      console.log("render")
+    },[])
+
+
+  const allEpisodes: IntEpisode[] = [...episode];
 
   const filterEpisodes = allEpisodes.filter((oneEpisode: IntEpisode) => {
 
