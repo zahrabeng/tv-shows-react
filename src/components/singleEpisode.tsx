@@ -10,7 +10,7 @@ export default function SingleEpisode(): JSX.Element {
 
   useEffect(() => {
     const handleGetEpisodes = async () => {
-      const response = await fetch("https://api.tvmaze.com/shows/82/episodes ");
+      const response = await fetch("https://api.tvmaze.com/shows/527/episodes");
       const episodeList: IntEpisode[] = await response.json();
       setEpisode([...episodeList]);
     };
@@ -36,19 +36,19 @@ export default function SingleEpisode(): JSX.Element {
       {value.image && (
         <img src={value.image.medium} alt="screenshot from episode" />
       )}
-      {SummaryCleaning(value.summary)}
+      {value.summary &&  SummaryCleaning(value.summary)}
     </div>
   ));
 
-  const handleSearch = (e: any) => {
-    setSearchText(e.target.value);
+  const handleSearch = (e: string) => {
+    setSearchText(e);
   };
 
   return (
     <>
       <input
         placeholder="search for episode"
-        onChange={handleSearch}
+        onChange={(e)=>handleSearch(e.target.value)}
         value={searchText}
       />
       {displayEpisodes}
