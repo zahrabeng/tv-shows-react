@@ -59,12 +59,12 @@ export default function SingleEpisode(): JSX.Element {
 
   return (
     <>
+    <header>
       <input
         placeholder="search for episode"
         onChange={(e) => handleSearch(e.target.value)}
         value={searchText}
       />
-
       <select onChange={(e) => handleShowClick(e.target.value)}>
         <option>select a TV show</option>
 
@@ -74,9 +74,14 @@ export default function SingleEpisode(): JSX.Element {
           </option>
         ))}
       </select>
+      </header>
+      
+      <div className="all-episodes">
       {displayEpisodes}
-      <div>{mapName}</div>
-      <p>
+      <div className="each-episode">{mapName}</div>
+      </div>
+
+      <p className="credits-tag">
         Data taken from <a href="https://www.tvmaze.com/">TV Maze</a>
       </p>
     </>
