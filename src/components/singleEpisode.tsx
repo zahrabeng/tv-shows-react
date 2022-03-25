@@ -3,14 +3,16 @@ import seasonEpisodeNum from "./seasonEpisodeNum";
 import MatchToSearch from "./matchToSearch";
 import SummaryCleaning from "./summaryCleaning";
 import { useEffect, useState } from "react";
+import allShows from "../allShows.json"
 
 export default function SingleEpisode(): JSX.Element {
   const [searchText, setSearchText] = useState<string>("");
   const [episode, setEpisode] = useState<IntEpisode[]>([]);
-
+  const [show, setShow] = useState<string>("https://api.tvmaze.com/shows/527/episodes")
+  const everyShow = allShows
   useEffect(() => {
     const handleGetEpisodes = async () => {
-      const response = await fetch("https://api.tvmaze.com/shows/527/episodes");
+      const response = await fetch(show);
       const episodeList: IntEpisode[] = await response.json();
       setEpisode([...episodeList]);
     };
@@ -36,7 +38,7 @@ export default function SingleEpisode(): JSX.Element {
       {value.image && (
         <img src={value.image.medium} alt="screenshot from episode" />
       )}
-      {value.summary &&  SummaryCleaning(value.summary)}
+      {value.summary && SummaryCleaning(value.summary)}
     </div>
   ));
 
@@ -48,9 +50,13 @@ export default function SingleEpisode(): JSX.Element {
     <>
       <input
         placeholder="search for episode"
-        onChange={(e)=>handleSearch(e.target.value)}
+        onChange={(e) => handleSearch(e.target.value)}
         value={searchText}
       />
+      <select>
+        <option>select a TV show</option>
+        {allShows.map((singleShow:any) => <option>{singleShow.name}</option>)}
+      </select>
       {displayEpisodes}
       <div>{mapName}</div>
       <p>
