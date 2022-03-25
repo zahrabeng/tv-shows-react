@@ -14,7 +14,8 @@ export default function SingleEpisode(): JSX.Element {
   );
 
   const everyShow: any = [...allShows];
-
+  const sortedEveryShow = [...everyShow.sort((a:any, b:any) => a.name.localeCompare(b.name))]
+ 
   useEffect(() => {
     const handleGetEpisodes = async () => {
       const response = await fetch(show);
@@ -67,7 +68,7 @@ export default function SingleEpisode(): JSX.Element {
       <select onChange={(e) => handleShowClick(e.target.value)}>
         <option>select a TV show</option>
 
-        {everyShow.map((singleShow: showTypes) => (
+        {sortedEveryShow.map((singleShow: showTypes) => (
           <option key={`${singleShow.id}`} value={singleShow.id} >
             {singleShow.name}
           </option>
