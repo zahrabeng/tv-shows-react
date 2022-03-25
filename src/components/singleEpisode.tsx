@@ -35,16 +35,16 @@ export default function SingleEpisode(): JSX.Element {
   const displayEpisodes = `Displaying ${filterEpisodes.length}/${episode.length} episodes.`;
 
   const mapName = filterEpisodes.map((value) => (
-    <div key={value.id}>
+    <div key={value.id} className="each-episode">
       {" "}
       <h2>
         {" "}
         {value.name} {seasonEpisodeNum(value.season, value.number)}
       </h2>
       {value.image && (
-        <img src={value.image.medium} alt="screenshot from episode" />
+        <img src={value.image.medium} alt="screenshot from episode" className="episode-image" />
       )}
-      {value.summary && SummaryCleaning(value.summary)}
+      <p className="summary">{value.summary && SummaryCleaning(value.summary)}</p>
     </div>
   ));
 
@@ -74,11 +74,11 @@ export default function SingleEpisode(): JSX.Element {
           </option>
         ))}
       </select>
+      {displayEpisodes}
       </header>
       
       <div className="all-episodes">
-      {displayEpisodes}
-      <div className="each-episode">{mapName}</div>
+      <div>{mapName}</div>
       </div>
 
       <p className="credits-tag">

@@ -1,0 +1,36 @@
+body{
+    font-family: 'Courier New', Courier, monospace;
+    background-color: rgb(164, 194, 223);
+}
+
+header{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.all-episodes{
+    background-color: rgb(184, 221, 221);
+    border-radius: 5px;
+    margin-top: 8px;
+}
+
+.each-episode{
+    display: inline-flex;
+    flex-wrap: wrap;
+    width: 350px;
+    background-color: aliceblue;
+    margin:20px;  
+    justify-content: center;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.summary{
+    max-width: 350px;
+    text-align: center;
+}
+
+.episode-image{
+    border-radius: 3px;
+}
