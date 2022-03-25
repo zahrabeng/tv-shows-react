@@ -12,7 +12,7 @@ export default function SingleEpisode(): JSX.Element {
   const [show, setShow] = useState<string>(
     "https://api.tvmaze.com/shows/527/episodes"
   );
-  const everyShow: showTypes[] = [...allShows];
+  const everyShow: any = [...allShows];
 
   useEffect(() => {
     const handleGetEpisodes = async () => {
@@ -59,8 +59,8 @@ export default function SingleEpisode(): JSX.Element {
       />
       <select>
         <option>select a TV show</option>
-        {everyShow.map((singleShow: showTypes) => (
-          <option>{singleShow.name}</option>
+        {everyShow.map((singleShow:showTypes) => (
+          <option key={singleShow.id}>{singleShow.name}</option>
         ))}
       </select>
       {displayEpisodes}

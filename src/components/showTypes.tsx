@@ -1,58 +1,59 @@
 export default interface showTypes {
-  id: number;
-  url: string;
-  name: string;
-  type: string;
-  language: string;
-  genres: string[];
-  status: string;
-  runtime: number;
-  averageRuntime: number;
-  premiered: string;
-  ended: string;
-  officialSite: string;
+  id: number|null ;
+  url: string|null;
+  name: string|null;
+  type: string|null;
+  language: string|null;
+  genres: string[]|null;
+  status: string|null;
+  runtime: number|null;
+  averageRuntime: number|null;
+  premiered: string|null;
+  ended: string|null;
+  officialSite: string|null;
   schedule: {
-    time: string;
-    days: string[];
+    time: string|null;
+    days: string[]|null;
   };
   rating: {
     average: null | string;
   };
-  weight: number;
+  weight: number|null;
   network: {
-    id: number;
-    name: string;
+    id: number|null;
+    name: string|null;
     country: {
-      name: string;
-      code: string;
-      timezone: string;
+      name: string|null;
+      code: string|null;
+      timezone: string|null;
     };
     officialSite: null | string;
   };
   webChannel: {
-    id: number;
-    name: string;
+    id: number|null;
+    name: string|null;
     country: {
-      name: string;
-      code: string;
-      timezone: string;
+      name: string|null;
+      code: string|null;
+      timezone: string|null;
     };
     officialSite: null | string;
   };
   dvdCountry: null | string;
   externals: {
-    tvrage: number;
-    thetvdb: number;
-    imbd: string;
+    tvrage: number|null;
+    thetvdb: number|null;
+    imbd: string|null;
   };
   image: {
-    medium: string;
-    original: string;
+    medium: string|null;
+    original: string|null;
   };
-  summary: string;
-  updated: number;
-  _links: { self: { href: string } };
-  previousepisode: {
-    href: string;
+  summary: string|null;
+  updated: number|null;
+  _links: { self: { href: string|null } ;
+    previousepisode: null | {
+     href: string|null;
+    } 
   };
 }
