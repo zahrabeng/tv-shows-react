@@ -51,8 +51,8 @@ export default function SingleEpisode(): JSX.Element {
     setSearchText(e);
   };
 
-  const handleShowClick = (url: string) => {
-    setShow(url);
+  const handleShowClick = (id: string) => {
+    setShow(`https://api.tvmaze.com/shows/${id}/episodes`);
     console.log(show)
   };
 
@@ -68,7 +68,7 @@ export default function SingleEpisode(): JSX.Element {
         <option>select a TV show</option>
 
         {everyShow.map((singleShow: showTypes) => (
-          <option key={singleShow.id} value={singleShow.url} >
+          <option key={`${singleShow.id}`} value={singleShow.id} >
             {singleShow.name}
           </option>
         ))}
