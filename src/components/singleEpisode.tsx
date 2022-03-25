@@ -3,13 +3,17 @@ import seasonEpisodeNum from "./seasonEpisodeNum";
 import MatchToSearch from "./matchToSearch";
 import SummaryCleaning from "./summaryCleaning";
 import { useEffect, useState } from "react";
-import allShows from "../allShows.json"
+import allShows from "../allShows.json";
+import showTypes from "./showTypes";
 
 export default function SingleEpisode(): JSX.Element {
   const [searchText, setSearchText] = useState<string>("");
   const [episode, setEpisode] = useState<IntEpisode[]>([]);
-  const [show, setShow] = useState<string>("https://api.tvmaze.com/shows/527/episodes")
-  const everyShow = allShows
+  const [show, setShow] = useState<string>(
+    "https://api.tvmaze.com/shows/527/episodes"
+  );
+  const everyShow: showTypes[] = [...allShows];
+
   useEffect(() => {
     const handleGetEpisodes = async () => {
       const response = await fetch(show);
@@ -55,7 +59,9 @@ export default function SingleEpisode(): JSX.Element {
       />
       <select>
         <option>select a TV show</option>
-        {allShows.map((singleShow:any) => <option>{singleShow.name}</option>)}
+        {everyShow.map((singleShow: showTypes) => (
+          <option>{singleShow.name}</option>
+        ))}
       </select>
       {displayEpisodes}
       <div>{mapName}</div>
