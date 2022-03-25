@@ -74,7 +74,7 @@ export default function SingleEpisode(): JSX.Element {
           </option>
         ))}
       </select>
-      {displayEpisodes}
+      <p className="episode-count">{displayEpisodes}</p>
       </header>
       
       <div className="all-episodes">
