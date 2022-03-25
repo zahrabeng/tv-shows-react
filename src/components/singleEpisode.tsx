@@ -12,6 +12,7 @@ export default function SingleEpisode(): JSX.Element {
   const [show, setShow] = useState<string>(
     "https://api.tvmaze.com/shows/527/episodes"
   );
+
   const everyShow: any = [...allShows];
 
   useEffect(() => {
@@ -21,7 +22,7 @@ export default function SingleEpisode(): JSX.Element {
       setEpisode([...episodeList]);
     };
     handleGetEpisodes();
-  }, [episode]);
+  }, [show]);
 
   const filterEpisodes = episode.filter((oneEpisode: IntEpisode) => {
     return (
@@ -50,6 +51,11 @@ export default function SingleEpisode(): JSX.Element {
     setSearchText(e);
   };
 
+  const handleShowClick = (url: string) => {
+    setShow(url);
+    console.log(show)
+  };
+
   return (
     <>
       <input
@@ -57,10 +63,14 @@ export default function SingleEpisode(): JSX.Element {
         onChange={(e) => handleSearch(e.target.value)}
         value={searchText}
       />
-      <select>
+
+      <select onChange={(e) => handleShowClick(e.target.value)}>
         <option>select a TV show</option>
-        {everyShow.map((singleShow:showTypes) => (
-          <option key={singleShow.id}>{singleShow.name}</option>
+
+        {everyShow.map((singleShow: showTypes) => (
+          <option key={singleShow.id} value={singleShow.url} >
+            {singleShow.name}
+          </option>
         ))}
       </select>
       {displayEpisodes}
