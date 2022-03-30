@@ -1,0 +1,51 @@
+body{
+    font-family: 'Courier New', Courier, monospace;
+    background-color: rgb(164, 194, 223);
+}
+
+header{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: rgb(115, 199, 199);
+    border-radius: 4px;
+    border-width: 0.2px;
+    border-color: rgb(55, 55, 78);
+    border-style:groove;
+
+}
+
+.all-episodes{
+    background-color: rgb(184, 221, 221);
+    border-radius: 5px;
+    margin-top: 8px;
+}
+
+.each-episode{
+    display: inline-flex;
+    flex-wrap: wrap;
+    width: 350px;
+    background-color: aliceblue;
+    margin:20px;  
+    justify-content: center;
+    text-align: center;
+    border-radius: 5px;
+    border-width: 1px;
+    border-color: rgb(73, 71, 71);
+    border-style: groove;
+    box-shadow: 0px 10px 5px #888888;
+}
+
+.summary{
+    max-width: 350px;
+    text-align: center;
+}
+
+.episode-image{
+    border-radius: 3px;
+}
+
+.episode-count{
+    font-size: 12px;
+    color: rgb(51, 50, 50);
+}
