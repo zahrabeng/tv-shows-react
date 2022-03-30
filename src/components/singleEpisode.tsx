@@ -91,7 +91,7 @@ export default function SingleEpisode(): JSX.Element {
         <div>{mapName}</div>
       </div>
 
-      <p className="credits-tag">
+      <p>
         Data taken from <a href="https://www.tvmaze.com/">TV Maze</a>
       </p>
     </>
