@@ -1,6 +1,6 @@
 export default interface showTypes {
   id: number;
-  url: string;
+  url: string | null;
   name: string;
   type: string | null;
   language: string | null;
@@ -14,21 +14,21 @@ export default interface showTypes {
   schedule: {
     time: string | null;
     days: string[] | null;
-  };
-  rating: {
-    average: null | string;
+  } | null;
+  rating: null | {
+    average: null | number;
   };
   weight: number | null;
   network: {
     id: number | null;
     name: string | null;
     country: {
-      name: string | null;
-      code: string | null;
-      timezone: string | null;
-    };
+      name: string;
+      code: string;
+      timezone: string;
+    } | null;
     officialSite: null | string;
-  };
+  } | null;
   webChannel: {
     id: number | null;
     name: string | null;
@@ -36,25 +36,24 @@ export default interface showTypes {
       name: string | null;
       code: string | null;
       timezone: string | null;
-    };
+    } | null;
     officialSite: null | string;
-  };
+  } | null;
   dvdCountry: null | string;
   externals: {
     tvrage: number | null;
     thetvdb: number | null;
-    imbd: string | null;
-  };
+    imdb: string | null;
+  } | null;
   image: {
     medium: string | null;
     original: string | null;
-  };
+  } | null;
   summary: string | null;
   updated: number | null;
   _links: {
-    self: { href: string | null };
-    previousepisode: null | {
-      href: string | null;
-    };
-  };
+    self: { href: string | null } | null;
+    previousepisode?: null | { href: string };
+    nextepisode?: null | { href: string };
+  } | null;
 }

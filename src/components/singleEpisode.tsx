@@ -13,9 +13,13 @@ export default function SingleEpisode(): JSX.Element {
     "https://api.tvmaze.com/shows/527/episodes"
   );
 
-  const everyShow: any = [...allShows];
-  const sortedEveryShow = [...everyShow.sort((a:any, b:any) => a.name.localeCompare(b.name))]
- 
+  const everyShow: showTypes[] = [...allShows];
+  const sortedEveryShow = [
+    ...everyShow.sort((a: showTypes, b: showTypes) =>
+      a.name.localeCompare(b.name)
+    ),
+  ];
+
   useEffect(() => {
     const handleGetEpisodes = async () => {
       const response = await fetch(show);
@@ -42,9 +46,15 @@ export default function SingleEpisode(): JSX.Element {
         {value.name} {seasonEpisodeNum(value.season, value.number)}
       </h2>
       {value.image && (
-        <img src={value.image.medium} alt="screenshot from episode" className="episode-image" />
+        <img
+          src={value.image.medium}
+          alt="screenshot from episode"
+          className="episode-image"
+        />
       )}
-      <p className="summary">{value.summary && SummaryCleaning(value.summary)}</p>
+      <p className="summary">
+        {value.summary && SummaryCleaning(value.summary)}
+      </p>
     </div>
   ));
 
@@ -54,31 +64,31 @@ export default function SingleEpisode(): JSX.Element {
 
   const handleShowClick = (id: string) => {
     setShow(`https://api.tvmaze.com/shows/${id}/episodes`);
-    console.log(show)
+    console.log(show);
   };
 
   return (
     <>
-    <header>
-      <input
-        placeholder="search for episode"
-        onChange={(e) => handleSearch(e.target.value)}
-        value={searchText}
-      />
-      <select onChange={(e) => handleShowClick(e.target.value)}>
-        <option>select a TV show</option>
+      <header>
+        <input
+          placeholder="search for episode"
+          onChange={(e) => handleSearch(e.target.value)}
+          value={searchText}
+        />
+        <select onChange={(e) => handleShowClick(e.target.value)}>
+          <option>select a TV show</option>
 
-        {sortedEveryShow.map((singleShow: showTypes) => (
-          <option key={`${singleShow.id}`} value={singleShow.id} >
-            {singleShow.name}
-          </option>
-        ))}
-      </select>
-      <p className="episode-count">{displayEpisodes}</p>
+          {sortedEveryShow.map((singleShow: showTypes) => (
+            <option key={`${singleShow.id}`} value={singleShow.id}>
+              {singleShow.name}
+            </option>
+          ))}
+        </select>
+        <p className="episode-count">{displayEpisodes}</p>
       </header>
-      
+
       <div className="all-episodes">
-      <div>{mapName}</div>
+        <div>{mapName}</div>
       </div>
 
       <p className="credits-tag">
